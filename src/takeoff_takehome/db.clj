@@ -1,25 +1,11 @@
 (ns takeoff-takehome.db
   (:require [hikari-cp.core :as h]
             [clojure.java.jdbc :as jdbc]
+            [cprop.core :refer [load-config]]
             [jeesql.core :refer [defqueries]]
             [mount.core :refer [defstate]]))
 
-(def datasource-options {:auto-commit        true
-                         :read-only          false
-                         :connection-timeout 30000
-                         :validation-timeout 5000
-                         :idle-timeout       600000
-                         :max-lifetime       1800000
-                         :minimum-idle       10
-                         :maximum-pool-size  10
-                         :pool-name          "db-pool"
-                         :adapter            "postgresql"
-                         :username           "takeoff"
-                         :password           "takeoff123"
-                         :database-name      "takeoff_takehome"
-                         :server-name        "localhost"
-                         :port-number        5432
-                         :register-mbeans    false})
+(def datasource-options (load-config))
 
 (defn db-url []
   (format "jdbc:%s://%s:%s/%s?user=%s&password=%s"
