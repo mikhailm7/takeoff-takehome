@@ -1,7 +1,7 @@
 -- users
-INSERT INTO users (user_id, email, password) VALUES (1, 'user1@mail.com', 'password1');
-INSERT INTO users (user_id, email, password) VALUES (2, 'user2@mail.com', 'password2');
-INSERT INTO users (user_id, email, password) VALUES (3, 'user3@mail.com', 'password3');
+INSERT INTO users (user_id, email, password) VALUES (1, 'user1@mail.com', 'bcrypt+sha512$86c036a7fdfb04e6ce685432f31073d6$12$60f512e74cd88a2f205efa91279f35b14653793569143588');
+INSERT INTO users (user_id, email, password) VALUES (2, 'user2@mail.com', 'bcrypt+sha512$fb848fc63ccc873b7c655c9199ab915e$12$76c06803336336347ac3c48f934fb2d440a8d08693f91a10');
+INSERT INTO users (user_id, email, password) VALUES (3, 'user3@mail.com', 'bcrypt+sha512$64dc6000167b2b9a8bca0c228cf7c636$12$68bbb3a5fa55dfd6e490679f0a70f9db90c895fac91eec9a');
 
 -- roles
 -- role for user #1
