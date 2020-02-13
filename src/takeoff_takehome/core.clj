@@ -11,6 +11,7 @@
             [ring.util.http-response :as http-response]
             [takeoff-takehome.auth :as auth]
             [takeoff-takehome.db :as db]
+            [takeoff-takehome.migrations :as m]
             [taoensso.timbre :as log]))
 
 (def not-implemented "This API is NOT currently implemented!")
@@ -68,4 +69,5 @@
 (defn -main
   "This is our app's entry point"
   [& args]
-  (mount/start))
+  (mount/start)
+  (m/migrate))
