@@ -14,7 +14,8 @@
                  [org.postgresql/postgresql "42.1.4"]
                  [hikari-cp "2.10.0"]
                  [mount "0.1.12"]
-                 [com.taoensso/timbre "4.10.0"]]
+                 [com.taoensso/timbre "4.10.0"]
+                 [cprop "0.1.15"]]
   :main ^:skip-aot takeoff-takehome.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
