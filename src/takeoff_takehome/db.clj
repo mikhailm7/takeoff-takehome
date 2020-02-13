@@ -20,6 +20,15 @@
                          :port-number        5432
                          :register-mbeans    false})
 
+(defn db-url []
+  (format "jdbc:%s://%s:%s/%s?user=%s&password=%s"
+          (:adapter datasource-options)
+          (:server-name datasource-options)
+          (:port-number datasource-options)
+          (:database-name datasource-options)
+          (:username datasource-options)
+          (:password datasource-options)))
+
 (defstate datasource
   :start (h/make-datasource datasource-options)
   :stop (h/close-datasource datasource))
