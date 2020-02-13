@@ -14,6 +14,7 @@
                  [org.postgresql/postgresql "42.1.4"]
                  [hikari-cp "2.10.0"]
                  [mount "0.1.12"]
+                 [ragtime "0.8.0"]
                  [com.taoensso/timbre "4.10.0"]]
   :main ^:skip-aot takeoff-takehome.core
   :target-path "target/%s"

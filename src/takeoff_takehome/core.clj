@@ -9,6 +9,7 @@
             [ring.middleware.json :refer [wrap-json-params]]
             [takeoff-takehome.auth :as auth]
             [takeoff-takehome.db :as db]
+            [takeoff-takehome.migrations :as m]
             [taoensso.timbre :as timbre :refer [info]])
   (:gen-class)
   )
@@ -94,4 +95,5 @@
   (let [port (Integer/parseInt (or (System/getenv "PORT") "8080"))]
     (mount.core/start)
     (server/run-server (wrap-json-params #'app-routes (assoc-in site-defaults [:security :anti-forgery] false)) {:port port})
+    (m/migrate)
     (info "Running webserver at http:/127.0.0.1:" port "/")))
