@@ -2,7 +2,8 @@
   (:require [buddy.sign.jwt :as jwt]
             [clj-time.core :as time]
             [buddy.core.hash :as hash]
-            [taoensso.timbre :as timbre :refer [info error]]))
+            [buddy.hashers :as hashers]
+            [taoensso.timbre :as log]))
 
 (defonce secret-key "86bae26023208e57a5880d5ad644143c567fc57baaf5a942")
 
@@ -15,11 +16,18 @@
    :exp (time/plus (time/now) (time/hours expiration-in-hours))})
 
 (defn generate-signature [email password]
-  (info "Generating Signature for user: " email)
+  (log/infof "Generating Signature for user: %s" email)
   (jwt/sign (claims email) secret))
 
 (defn unsign-token [token]
   (try
     (jwt/unsign token secret)
     (catch Exception e
-      (error "[ERROR] error in unsigning token: %" e))))
+      (log/errorf "[ERROR] error in unsigning token: %s" e))))
+
+(defn hash-password [password]
+  (hashers/derive password {:alg :bcrypt+sha512}))
+
+(defn check-password [plaintext hashed]
+  (-> (hashers/check plaintext hashed)
+      (boolean)))
