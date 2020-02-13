@@ -99,16 +99,7 @@ are examples for users #2 and #3:
 
 There are a number of open issues:
 
-- password is stored in the clear in the database, which is BAD, BAD,
-BAD
-
 - there are no unit tests, or any other types of tests.
-
-- SQL statements are directly embedded in Clojure code, should use
-jeesql to separate them out.
-
-- configuration (e.g. for Postgres) is based into Clojure source code,
-should use configuration management library, e.g. cprop.
 
 - there isn't any validation on incoming query/body parameters.
 
