@@ -49,7 +49,7 @@
   (let [email (get (:params req) "email")
         password (get (:params req) "password")
         resp {:token (auth/generate-signature email password)}]
-    (info "Generating token for user " email)
+    (info "Generating token for user: " email)
     (str (json/write-str resp))))
 
 (defn permissions-handler [req]
