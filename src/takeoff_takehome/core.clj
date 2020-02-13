@@ -9,7 +9,7 @@
             [ring.middleware.json :refer [wrap-json-params]]
             [takeoff-takehome.auth :as auth]
             [takeoff-takehome.db :as db]
-            )
+            [taoensso.timbre :as timbre :refer [info]])
   (:gen-class)
   )
 
@@ -49,6 +49,7 @@
   (let [email (get (:params req) "email")
         password (get (:params req) "password")
         resp {:token (auth/generate-signature email password)}]
+    (info "Generating token for user: " email)
     (str (json/write-str resp))))
 
 (defn permissions-handler [req]
@@ -93,4 +94,4 @@
   (let [port (Integer/parseInt (or (System/getenv "PORT") "8080"))]
     (mount.core/start)
     (server/run-server (wrap-json-params #'app-routes (assoc-in site-defaults [:security :anti-forgery] false)) {:port port})
-    (println (str "Running webserver at http:/127.0.0.1:" port "/"))))
+    (info "Running webserver at http:/127.0.0.1:" port "/")))
